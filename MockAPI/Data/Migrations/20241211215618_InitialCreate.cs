@@ -16,7 +16,9 @@ namespace MockAPI.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Colors = table.Column<string>(type: "TEXT", nullable: false)
+                    Colors = table.Column<string>(type: "TEXT", nullable: false),
+                    Highlighted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Tags = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,8 +27,8 @@ namespace MockAPI.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Palettes",
-                columns: new[] { "Id", "Colors" },
-                values: new object[] { 1, "[\"#e24511\",\"#534b68\",\"#3c73a0\",\"#e75db5\"]" });
+                columns: new[] { "Id", "Colors", "Highlighted", "Tags" },
+                values: new object[] { 1, "[\"#e24511\",\"#534b68\",\"#3c73a0\",\"#e75db5\"]", true, "[\"warm\",\"modern\",\"bold\"]" });
         }
 
         /// <inheritdoc />

@@ -10,7 +10,7 @@ using MockAPI.Data;
 namespace MockAPI.Data.Migrations
 {
     [DbContext(typeof(ColorPalettesContext))]
-    [Migration("20241211115020_InitialCreate")]
+    [Migration("20241211215618_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -29,6 +29,12 @@ namespace MockAPI.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("Highlighted")
+                        .HasColumnType("INTEGER");
+
+                    b.PrimitiveCollection<string>("Tags")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("Palettes");
@@ -37,7 +43,9 @@ namespace MockAPI.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Colors = "[\"#e24511\",\"#534b68\",\"#3c73a0\",\"#e75db5\"]"
+                            Colors = "[\"#e24511\",\"#534b68\",\"#3c73a0\",\"#e75db5\"]",
+                            Highlighted = true,
+                            Tags = "[\"warm\",\"modern\",\"bold\"]"
                         });
                 });
 #pragma warning restore 612, 618
