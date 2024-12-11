@@ -111,3 +111,6 @@ ServiceFabricBackup/
 *.code-workspace
 .history/
 .idea/
+
+# database files
+*.db
