@@ -8,14 +8,21 @@ public static class PaletteMapping
 {
     public static PaletteDto ToDto(this Palette palette)
     {
-        return new PaletteDto(palette.Id, palette.Colors);
+        return new PaletteDto(
+            palette.Id,
+            palette.Colors,
+            palette.Highlighted,
+            palette.Tags
+        );
     }
 
     public static Palette ToEntity(this CreatePaletteDto palette)
     {
         return new Palette()
         {
-            Colors = palette.Colors
+            Colors = palette.Colors,
+            Highlighted = palette.Highlighted,
+            Tags = palette.Tags
         };
     }
 
@@ -24,7 +31,9 @@ public static class PaletteMapping
         return new Palette()
         {
             Id = Id,
-            Colors = palette.Colors
+            Colors = palette.Colors,
+            Highlighted = palette.Highlighted,
+            Tags = palette.Tags
         };
     }
 }

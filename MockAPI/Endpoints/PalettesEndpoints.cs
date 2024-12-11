@@ -14,13 +14,24 @@ public static class PalettesEndpoints
     {
         var group = app.MapGroup("palettes");
 
-        // GET
-        group.MapGet("/", async (ColorPalettesContext dbContext) =>
+        group.MapGet("/", async (ColorPalettesContext dbContext, bool? highlighted, string? tags) =>
         {
-            return await dbContext.Palettes.Select(palette => palette.ToDto()).AsNoTracking().ToListAsync();
+            var query = dbContext.Palettes.AsQueryable();
+
+            if (highlighted.HasValue)
+            {
+                query = query.Where(palette => palette.Highlighted == highlighted.Value);
+            }
+
+            if (!string.IsNullOrEmpty(tags))
+            {
+                var tagList = tags.Split(',').Select(tag => tag.Trim()).ToList();
+                query = query.Where(palette => palette.Tags != null && palette.Tags.Any(tag => tagList.Contains(tag)));
+            }
+
+            return await query.Select(palette => palette.ToDto()).AsNoTracking().ToListAsync();
         });
 
-        // GET
         group.MapGet("/{id}", async (int Id, ColorPalettesContext dbContext) =>
         {
             Palette? palette = await dbContext.Palettes.FindAsync(Id);
@@ -33,7 +44,6 @@ public static class PalettesEndpoints
             return Results.Ok(palette);
         }).WithName(GetPaletteEndpointName);
 
-        // POST
         group.MapPost("/", async (CreatePaletteDto newPalette, ColorPalettesContext dbContext) =>
         {
             Palette palette = newPalette.ToEntity();
@@ -44,7 +54,6 @@ public static class PalettesEndpoints
             return Results.CreatedAtRoute(GetPaletteEndpointName, new { Id = palette.Id }, palette);
         });
 
-        // PUT
         group.MapPut("/{id}", async (int Id, UpdatePaletteDto updatedPalette, ColorPalettesContext dbContext) =>
         {
             var existingPalette = await dbContext.Palettes.FindAsync(Id);
@@ -60,7 +69,6 @@ public static class PalettesEndpoints
             return Results.NoContent();
         });
 
-        // DELETE
         group.MapDelete("/{id}", async (int Id, ColorPalettesContext dbContext) =>
         {
             await dbContext.Palettes.Where(palette => palette.Id == Id).ExecuteDeleteAsync();

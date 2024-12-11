@@ -13,7 +13,9 @@ public class ColorPalettesContext(DbContextOptions<ColorPalettesContext> options
             new Palette
             {
                 Id = 1,
-                Colors = new[] { "#e24511", "#534b68", "#3c73a0", "#e75db5" }
+                Colors = new[] { "#e24511", "#534b68", "#3c73a0", "#e75db5" },
+                Highlighted = true,
+                Tags = new List<string> { "warm", "modern", "bold" }
             }
         );
     }
