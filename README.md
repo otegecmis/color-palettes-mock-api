@@ -1,10 +1,10 @@
 ## Color Palettes Mock API
 
-A simple `C#` and `.NET Core` <ins>mock API</ins> using `EF Core` for managing color palettes with CRUD support.
+- A simple `C#` and `.NET Core` <ins>mock API</ins> using `EF Core` for managing color palettes with CRUD support.
 
 ### Getting Started
 
-1. Clone the repository and navigate to the project directory.
+1. Clone the repository.
 ```sh
 git clone https://github.com/otegecmis/color-palettes-mock-api.git
 ```
