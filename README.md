@@ -24,9 +24,26 @@ dotnet restore
 dotnet run
 ```
 
+### Database Configuration
+
+You can enable the option to recreate the database on each run by setting `RecreateDatabaseOnStart` to `true` in `launchSettings.json`. By default, this option is `false`.
+
+Example:
+```json
+{
+  "profiles": {
+    "http": {
+      "environmentVariables": {
+        "RecreateDatabaseOnStart": true
+      }
+    }
+  }
+}
+```
+
 ### API Documentation
 
-Access Swagger UI at `/swagger` to test the API.
+Access `Swagger UI` at `/swagger` to test the API.
 
 <div style="float: left;">
     <img src="Assets/Swagger.png" style="width: 80%;" />
