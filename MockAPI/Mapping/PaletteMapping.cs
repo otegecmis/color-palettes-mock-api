@@ -1,14 +1,13 @@
-using System;
-using MockAPI.Dtos;
+using MockAPI.DTOs;
 using MockAPI.Entities;
 
 namespace MockAPI.Mapping;
 
 public static class PaletteMapping
 {
-    public static PaletteDto ToDto(this Palette palette)
+    public static PaletteDTO ToDto(this Palette palette)
     {
-        return new PaletteDto(
+        return new PaletteDTO(
             palette.Id,
             palette.Colors,
             palette.Highlighted,
@@ -16,7 +15,7 @@ public static class PaletteMapping
         );
     }
 
-    public static Palette ToEntity(this CreatePaletteDto palette)
+    public static Palette ToEntity(this CreatePaletteDTO palette)
     {
         return new Palette()
         {
@@ -26,7 +25,7 @@ public static class PaletteMapping
         };
     }
 
-    public static Palette ToEntity(this UpdatePaletteDto palette, int Id)
+    public static Palette ToEntity(this UpdatePaletteDTO palette, int Id)
     {
         return new Palette()
         {

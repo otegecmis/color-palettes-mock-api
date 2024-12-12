@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MockAPI.Data;
-using MockAPI.Dtos;
+using MockAPI.DTOs;
 using MockAPI.Entities;
 using MockAPI.Mapping;
 
@@ -44,7 +44,7 @@ public static class PalettesEndpoints
             return Results.Ok(palette);
         }).WithName(GetPaletteEndpointName);
 
-        group.MapPost("/", async (CreatePaletteDto newPalette, ColorPalettesContext dbContext) =>
+        group.MapPost("/", async (CreatePaletteDTO newPalette, ColorPalettesContext dbContext) =>
         {
             Palette palette = newPalette.ToEntity();
             dbContext.Palettes.Add(palette);
@@ -54,7 +54,7 @@ public static class PalettesEndpoints
             return Results.CreatedAtRoute(GetPaletteEndpointName, new { Id = palette.Id }, palette);
         });
 
-        group.MapPut("/{id}", async (int Id, UpdatePaletteDto updatedPalette, ColorPalettesContext dbContext) =>
+        group.MapPut("/{id}", async (int Id, UpdatePaletteDTO updatedPalette, ColorPalettesContext dbContext) =>
         {
             var existingPalette = await dbContext.Palettes.FindAsync(Id);
 
