@@ -1,3 +1,3 @@
 namespace MockAPI.DTOs;
 
-public record class PaletteDTO(int Id, string[] Colors, bool Highlighted, List<string>? Tags);
+public record class PaletteDTO(int Id, List<string> Colors, bool Highlighted, List<string>? Tags);
