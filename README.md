@@ -1,15 +1,15 @@
 ## Color Palettes Mock API
 
-A `mock API` developed with `C#` and `.NET Core`, utilizing `EF Core`, that provides CRUD operations for managing color palettes.
+A simple `C#` and `.NET Core` <ins>mock API</ins> using `EF Core` for managing color palettes with CRUD support.
 
-### Installation
+### Getting Started
 
 1. Clone the repository.
 ```sh
 git clone https://github.com/otegecmis/color-palettes-mock-api.git
 ```
 
-2. Navigate into the project directory.
+2. Navigate to the project directory.
 ```sh
 cd color-palettes-mock-api
 ```
@@ -24,9 +24,9 @@ dotnet restore
 dotnet run
 ```
 
-### Swagger
+### API Documentation
 
-Once the application is running, you can access the Swagger UI at `/swagger` to explore and test the API.
+Access Swagger UI at `/swagger` to test the API.
 
 <div style="float: left;">
     <img src="Assets/Swagger.png" style="width: 80%;" />
