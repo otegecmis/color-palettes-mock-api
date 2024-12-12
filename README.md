@@ -4,14 +4,14 @@ A simple `C#` and `.NET Core` <ins>mock API</ins> using `EF Core` for managing c
 
 ### Getting Started
 
-1. Clone the repository.
+1. Clone the repository and navigate to the project directory.
 ```sh
-git clone https://github.com/otegecmis/color-palettes-mock-api.git
+git clone https://github.com/otegecmis/color-palettes-mock-api.git && cd color-palettes-mock-api
 ```
 
-2. Navigate to the project directory.
+2. Navigate to the MockAPI directory.
 ```sh
-cd color-palettes-mock-api
+cd MockAPI
 ```
 
 3. Restore dependencies.
