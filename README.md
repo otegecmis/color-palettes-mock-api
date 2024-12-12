@@ -26,7 +26,7 @@ dotnet run
 
 ### Database Configuration
 
-You can enable the option to recreate the database on each run by setting `RecreateDatabaseOnStart` to `true` in `launchSettings.json`. By default, this option is `false`.
+You can enable the option to recreate the database on each run by setting `RecreateDatabaseOnStart` to `true` in `launchSettings.json`.
 
 Example:
 ```json
@@ -40,6 +40,8 @@ Example:
   }
 }
 ```
+
+By default, this option is `false`.
 
 ### API Documentation
 
