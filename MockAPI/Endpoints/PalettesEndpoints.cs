@@ -13,6 +13,7 @@ public static class PalettesEndpoints
     public static RouteGroupBuilder MapPalettesEndpoints(this WebApplication app)
     {
         var group = app.MapGroup("palettes");
+        group.WithTags("Palettes");
 
         group.MapGet("/", async (ColorPalettesContext dbContext, bool? highlighted, string? tags) =>
         {

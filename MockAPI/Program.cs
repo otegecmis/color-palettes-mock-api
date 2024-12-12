@@ -20,7 +20,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.MapPalettesEndpoints();
+app.MapPalettesEndpoints().WithTags("Palettes");
 
 await app.MigrateDbAsync();
 
