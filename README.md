@@ -48,5 +48,5 @@ By default, this option is `false`.
 Access `Swagger UI` at `/swagger` to test the API.
 
 <div style="float: left;">
-    <img src=".github/Swagger.png" style="width: 80%;" />
+    <img src=".github/Images/Swagger.png" style="width: 80%;" />
 </div>
