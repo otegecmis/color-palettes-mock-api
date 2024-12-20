@@ -4,11 +4,11 @@ namespace MockAPI.Data;
 
 public static class DataExtensions
 {
-    public static async Task MigrateDbAsync(this WebApplication app)
+    public static async Task MigrateDatabase(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<ColorPalettesContext>();
+        var context = scope.ServiceProvider.GetRequiredService<ColorPalettesContext>();
 
-        await dbContext.Database.MigrateAsync();
+        await context.Database.MigrateAsync();
     }
 }

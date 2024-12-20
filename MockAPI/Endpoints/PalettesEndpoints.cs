@@ -1,82 +1,58 @@
-using Microsoft.EntityFrameworkCore;
-using MockAPI.Data;
 using MockAPI.DTOs;
-using MockAPI.Entities;
-using MockAPI.Mapping;
+using MockAPI.Services;
 
 namespace MockAPI.Endpoints;
 
 public static class PalettesEndpoints
 {
-    const string GetPaletteEndpointName = "GetPalette";
+    private const string GetPaletteEndpoint = "GetPalette";
 
     public static RouteGroupBuilder MapPalettesEndpoints(this WebApplication app)
     {
-        var group = app.MapGroup("palettes");
-        group.WithTags("Palettes");
+        var group = app.MapGroup("palettes").WithTags("Palettes");
 
-        group.MapGet("/", async (ColorPalettesContext dbContext, bool? highlighted, string? tags) =>
-        {
-            var query = dbContext.Palettes.AsQueryable();
-
-            if (highlighted.HasValue)
-            {
-                query = query.Where(palette => palette.Highlighted == highlighted.Value);
-            }
-
-            if (!string.IsNullOrEmpty(tags))
-            {
-                var tagList = tags.Split(',').Select(tag => tag.Trim()).ToList();
-                query = query.Where(palette => palette.Tags != null && palette.Tags.Any(tag => tagList.Contains(tag)));
-            }
-
-            return await query.Select(palette => palette.ToDto()).AsNoTracking().ToListAsync();
-        });
-
-        group.MapGet("/{id}", async (int Id, ColorPalettesContext dbContext) =>
-        {
-            Palette? palette = await dbContext.Palettes.FindAsync(Id);
-
-            if (palette is null)
-            {
-                return Results.NotFound();
-            }
-
-            return Results.Ok(palette);
-        }).WithName(GetPaletteEndpointName);
-
-        group.MapPost("/", async (CreatePaletteDTO newPalette, ColorPalettesContext dbContext) =>
-        {
-            Palette palette = newPalette.ToEntity();
-            dbContext.Palettes.Add(palette);
-
-            await dbContext.SaveChangesAsync();
-
-            return Results.CreatedAtRoute(GetPaletteEndpointName, new { Id = palette.Id }, palette);
-        });
-
-        group.MapPut("/{id}", async (int Id, UpdatePaletteDTO updatedPalette, ColorPalettesContext dbContext) =>
-        {
-            var existingPalette = await dbContext.Palettes.FindAsync(Id);
-
-            if (existingPalette is null)
-            {
-                return Results.NotFound();
-            }
-
-            dbContext.Entry(existingPalette).CurrentValues.SetValues(updatedPalette.ToEntity(Id));
-            await dbContext.SaveChangesAsync();
-
-            return Results.NoContent();
-        });
-
-        group.MapDelete("/{id}", async (int Id, ColorPalettesContext dbContext) =>
-        {
-            await dbContext.Palettes.Where(palette => palette.Id == Id).ExecuteDeleteAsync();
-
-            return Results.NoContent();
-        });
+        group.MapGet("/", GetPalettes);
+        group.MapGet("/{id:int}", GetPaletteById).WithName(GetPaletteEndpoint);
+        group.MapPost("/", CreatePalette);
+        group.MapPut("/{id:int}", UpdatePaletteById);
+        group.MapDelete("/{id:int}", DeletePaletteById);
 
         return group;
+    }
+
+    private static async Task<IResult> GetPalettes(bool? highlighted, string? tags, IPalettesService palettesService)
+    {
+        var palettes = await palettesService.GetPalettes(highlighted, tags);
+        return Results.Ok(palettes);
+    }
+
+    private static async Task<IResult> GetPaletteById(int id, IPalettesService palettesService)
+    {
+        var palette = await palettesService.GetPaletteById(id);
+
+        if (palette is null)
+        {
+            Results.NotFound();
+        }
+
+        return Results.Ok(palette);
+    }
+
+    private static async Task<IResult> CreatePalette(CreatePaletteDTO createdPalette, IPalettesService palettesService)
+    {
+        var palette = await palettesService.CreatePalette(createdPalette);
+        return Results.CreatedAtRoute(GetPaletteEndpoint, new { id = palette.Id }, palette);
+    }
+
+    private static async Task<IResult> UpdatePaletteById(int id, UpdatePaletteDTO updatedPalette, IPalettesService palettesService)
+    {
+        var isUpdated = await palettesService.UpdatePaletteById(id, updatedPalette);
+        return !isUpdated ? Results.NotFound() : Results.NoContent();
+    }
+
+    private static async Task<IResult> DeletePaletteById(int id, IPalettesService palettesService)
+    {
+        var isDeleted = await palettesService.DeletePaletteById(id);
+        return !isDeleted ? Results.NotFound() : Results.NoContent();
     }
 }

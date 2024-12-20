@@ -1,11 +1,11 @@
-using MockAPI.DTOs;
 using MockAPI.Entities;
+using MockAPI.DTOs;
 
 namespace MockAPI.Mapping;
 
 public static class PaletteMapping
 {
-    public static PaletteDTO ToDto(this Palette palette)
+    public static PaletteDTO ToDTO(this Palette palette)
     {
         return new PaletteDTO(
             palette.Id,
