@@ -13,8 +13,8 @@ public static class PalettesEndpoints
 
         group.MapGet("/", GetPalettes);
         group.MapGet("/{id:int}", GetPaletteById).WithName(GetPaletteEndpoint);
-        group.MapPost("/", CreatePalette);
-        group.MapPut("/{id:int}", UpdatePaletteById);
+        group.MapPost("/", CreatePalette).WithParameterValidation();
+        group.MapPut("/{id:int}", UpdatePaletteById).WithParameterValidation();
         group.MapDelete("/{id:int}", DeletePaletteById);
 
         return group;
