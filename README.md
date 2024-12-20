@@ -26,7 +26,7 @@ dotnet run
 
 ### Database Configuration
 
-You can enable the option to recreate the database on each run by setting `RecreateDatabaseOnStart` to `true` in `launchSettings.json`.
+Set `RecreateDatabaseOnStart` to `true` in `launchSettings.json` to recreate the database on each run.
 
 Example:
 ```json
@@ -48,5 +48,5 @@ By default, this option is `false`.
 Access `Swagger UI` at `/swagger` to test the API.
 
 <div style="float: left;">
-    <img src="Assets/Swagger.png" style="width: 80%;" />
+    <img src=".github/Swagger.png" style="width: 80%;" />
 </div>
