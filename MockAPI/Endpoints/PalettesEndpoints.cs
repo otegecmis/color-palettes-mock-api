@@ -32,7 +32,7 @@ public static class PalettesEndpoints
 
         if (palette is null)
         {
-            Results.NotFound();
+            return Results.NotFound();
         }
 
         return Results.Ok(palette);
