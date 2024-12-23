@@ -6,18 +6,11 @@ using MockAPI.Interfaces;
 
 namespace MockAPI.Repositories;
 
-public class PaletteRepository : IPaletteRepository
+public class PaletteRepository(ColorPalettesContext context) : IPaletteRepository
 {
-    private readonly ColorPalettesContext _context;
-
-    public PaletteRepository(ColorPalettesContext context)
-    {
-        _context = context;
-    }
-
     public async Task<List<Palette>> GetAll(bool? highlighted, string? tags)
     {
-        var query = _context.Palettes.AsQueryable();
+        var query = context.Palettes.AsQueryable();
 
         if (highlighted.HasValue)
         {
@@ -38,20 +31,20 @@ public class PaletteRepository : IPaletteRepository
 
     public async Task<Palette?> GetById(int id)
     {
-        return await _context.Palettes.FindAsync(id);
+        return await context.Palettes.FindAsync(id);
     }
 
     public async Task<Palette> Create(Palette createdPalette)
     {
-        await _context.Palettes.AddAsync(createdPalette);
-        await _context.SaveChangesAsync();
+        await context.Palettes.AddAsync(createdPalette);
+        await context.SaveChangesAsync();
 
         return createdPalette;
     }
 
     public async Task<Palette?> UpdateById(int id, UpdatePaletteDto updatedPaletteDto)
     {
-        var existingPalette = await _context.Palettes.FindAsync(id);
+        var existingPalette = await context.Palettes.FindAsync(id);
 
         if (existingPalette is null)
         {
@@ -62,22 +55,22 @@ public class PaletteRepository : IPaletteRepository
         existingPalette.Highlighted = updatedPaletteDto.Highlighted;
         existingPalette.Tags = updatedPaletteDto.Tags;
 
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
 
         return existingPalette;
     }
 
     public async Task<Palette?> DeleteById(int id)
     {
-        var existingPalette = await _context.Palettes.FindAsync(id);
+        var existingPalette = await context.Palettes.FindAsync(id);
 
         if (existingPalette is null)
         {
             return null;
         }
 
-        _context.Palettes.Remove(existingPalette);
-        await _context.SaveChangesAsync();
+        context.Palettes.Remove(existingPalette);
+        await context.SaveChangesAsync();
 
         return existingPalette;
     }
