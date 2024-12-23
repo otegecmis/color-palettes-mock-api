@@ -1,7 +1,7 @@
-using MockAPI.Dtos;
-using MockAPI.Entities;
+using ColorPalettes.MockAPI.Dtos;
+using ColorPalettes.MockAPI.Entities;
 
-namespace MockAPI.Interfaces;
+namespace ColorPalettes.MockAPI.Interfaces;
 
 public interface IPaletteRepository
 {

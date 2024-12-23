@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MockAPI.Dtos;
+namespace ColorPalettes.MockAPI.Dtos;
 
-public record UpdatePaletteDto(
+public record CreatePaletteDto(
     [Required] List<string> Colors,
     [Required] bool Highlighted,
     List<string>? Tags

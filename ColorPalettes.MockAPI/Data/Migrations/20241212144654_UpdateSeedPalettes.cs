@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace MockAPI.Data.Migrations
+namespace ColorPalettes.MockAPI.Data.Migrations
 {
     /// <inheritdoc />
     public partial class UpdateSeedPalettes : Migration

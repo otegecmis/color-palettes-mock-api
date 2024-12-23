@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using MockAPI.Data;
-using MockAPI.Interfaces;
-using MockAPI.Repositories;
-using MockAPI.Endpoints;
+using ColorPalettes.MockAPI.Data;
+using ColorPalettes.MockAPI.Interfaces;
+using ColorPalettes.MockAPI.Repositories;
+using ColorPalettes.MockAPI.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 var connString = builder.Configuration.GetConnectionString("ColorPalettes");

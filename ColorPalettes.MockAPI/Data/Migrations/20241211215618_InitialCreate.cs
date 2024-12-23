@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MockAPI.Data.Migrations
+namespace ColorPalettes.MockAPI.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

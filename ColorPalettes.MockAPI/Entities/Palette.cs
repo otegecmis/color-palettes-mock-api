@@ -1,4 +1,4 @@
-namespace MockAPI.Entities;
+namespace ColorPalettes.MockAPI.Entities;
 
 public class Palette
 {

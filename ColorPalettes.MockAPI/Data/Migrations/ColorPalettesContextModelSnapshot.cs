@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MockAPI.Data;
+using ColorPalettes.MockAPI.Data;
 
 #nullable disable
 
-namespace MockAPI.Data.Migrations
+namespace ColorPalettes.MockAPI.Data.Migrations
 {
     [DbContext(typeof(ColorPalettesContext))]
     partial class ColorPalettesContextModelSnapshot : ModelSnapshot
@@ -16,7 +16,7 @@ namespace MockAPI.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
 
-            modelBuilder.Entity("MockAPI.Entities.Palette", b =>
+            modelBuilder.Entity("ColorPalettes.MockAPI.Entities.Palette", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace MockAPI.Data;
+namespace ColorPalettes.MockAPI.Data;
 
 public static class DataExtensions
 {

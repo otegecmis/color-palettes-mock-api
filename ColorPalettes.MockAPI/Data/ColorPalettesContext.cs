@@ -1,7 +1,7 @@
+using ColorPalettes.MockAPI.Entities;
 using Microsoft.EntityFrameworkCore;
-using MockAPI.Entities;
 
-namespace MockAPI.Data;
+namespace ColorPalettes.MockAPI.Data;
 
 public class ColorPalettesContext(DbContextOptions<ColorPalettesContext> options) : DbContext(options)
 {

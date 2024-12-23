@@ -1,7 +1,7 @@
-using MockAPI.Entities;
-using MockAPI.Dtos;
+using ColorPalettes.MockAPI.Dtos;
+using ColorPalettes.MockAPI.Entities;
 
-namespace MockAPI.Mapping;
+namespace ColorPalettes.MockAPI.Mapping;
 
 public static class PaletteMapping
 {

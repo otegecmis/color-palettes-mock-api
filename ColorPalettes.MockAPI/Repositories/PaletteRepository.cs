@@ -1,10 +1,10 @@
+using ColorPalettes.MockAPI.Data;
+using ColorPalettes.MockAPI.Dtos;
+using ColorPalettes.MockAPI.Entities;
+using ColorPalettes.MockAPI.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MockAPI.Data;
-using MockAPI.Entities;
-using MockAPI.Dtos;
-using MockAPI.Interfaces;
 
-namespace MockAPI.Repositories;
+namespace ColorPalettes.MockAPI.Repositories;
 
 public class PaletteRepository(ColorPalettesContext context) : IPaletteRepository
 {

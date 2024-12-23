@@ -1,8 +1,8 @@
-using MockAPI.Dtos;
-using MockAPI.Interfaces;
-using MockAPI.Mapping;
+using ColorPalettes.MockAPI.Dtos;
+using ColorPalettes.MockAPI.Interfaces;
+using ColorPalettes.MockAPI.Mapping;
 
-namespace MockAPI.Endpoints;
+namespace ColorPalettes.MockAPI.Endpoints;
 
 public static class PalettesEndpoints
 {
