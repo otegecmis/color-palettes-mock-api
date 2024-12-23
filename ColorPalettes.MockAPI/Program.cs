@@ -7,7 +7,7 @@ using ColorPalettes.MockAPI.Endpoints;
 var builder = WebApplication.CreateBuilder(args);
 var connString = builder.Configuration.GetConnectionString("SQLiteConnectionString");
 
-builder.Services.AddSqlite<ColorPalettesContext>(connString);
+builder.Services.AddSqlite<ApplicationDbContext>(connString);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -18,7 +18,7 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<ColorPalettesContext>();
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     var launchSetting = builder.Configuration.GetValue<bool>("RecreateDatabaseOnStart");
 
     if (launchSetting)

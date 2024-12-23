@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ColorPalettes.MockAPI.Repositories;
 
-public class PaletteRepository(ColorPalettesContext context) : IPaletteRepository
+public class PaletteRepository(ApplicationDbContext context) : IPaletteRepository
 {
     public async Task<List<Palette>> GetAll(bool? highlighted, string? tags)
     {

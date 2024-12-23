@@ -9,7 +9,7 @@ using ColorPalettes.MockAPI.Data;
 
 namespace ColorPalettes.MockAPI.Data.Migrations
 {
-    [DbContext(typeof(ColorPalettesContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20241212184246_UpdateColorsProp")]
     partial class UpdateColorsProp
     {

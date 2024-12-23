@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ColorPalettes.MockAPI.Data;
 
-public class ColorPalettesContext(DbContextOptions<ColorPalettesContext> options) : DbContext(options)
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
     public DbSet<Palette> Palettes => Set<Palette>();
 

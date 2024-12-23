@@ -8,7 +8,7 @@ using ColorPalettes.MockAPI.Data;
 
 namespace ColorPalettes.MockAPI.Data.Migrations
 {
-    [DbContext(typeof(ColorPalettesContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class ColorPalettesContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
