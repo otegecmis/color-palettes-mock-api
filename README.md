@@ -1,6 +1,6 @@
 ## Color Palettes Mock API
 
-- A simple `mock API` built with `C#`, `.NET Core` and `EF Core` to manage color palettes with CRUD operations.
+- A simple `mock API` built with `.NET Core` and `EF Core` to manage color palettes with CRUD operations.
 
 ### Getting Started
 
