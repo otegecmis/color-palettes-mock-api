@@ -5,7 +5,7 @@ using ColorPalettes.MockAPI.Repositories;
 using ColorPalettes.MockAPI.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
-var connString = builder.Configuration.GetConnectionString("ColorPalettes");
+var connString = builder.Configuration.GetConnectionString("SQLiteConnectionString");
 
 builder.Services.AddSqlite<ColorPalettesContext>(connString);
 
