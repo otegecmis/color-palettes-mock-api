@@ -9,9 +9,9 @@
 git clone https://github.com/otegecmis/color-palettes-mock-api.git
 ```
 
-2. Navigate to the MockAPI directory.
+2. Navigate to the `ColorPalettes.MockAPI` directory.
 ```sh
-cd color-palettes-mock-api/MockAPI
+cd color-palettes-mock-api/ColorPalettes.MockAPI
 ```
 
 3. Restore dependencies.
