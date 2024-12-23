@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MockAPI.Data;
-using MockAPI.Services;
+using MockAPI.Interfaces;
+using MockAPI.Repositories;
 using MockAPI.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,7 @@ builder.Services.AddSqlite<ColorPalettesContext>(connString);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IPalettesService, PalettesService>();
+builder.Services.AddScoped<IPaletteRepository, PaletteRepository>();
 
 var app = builder.Build();
 
