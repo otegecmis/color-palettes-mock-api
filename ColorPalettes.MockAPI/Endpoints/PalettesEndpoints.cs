@@ -31,7 +31,11 @@ public static class PalettesEndpoints
     private static async Task<IResult> GetById(int id, IPaletteRepository paletteRepository)
     {
         var palette = await paletteRepository.GetById(id);
-        return palette is null ? Results.NotFound() : Results.Ok(palette.ToPaletteDto());
+
+        if (palette == null)
+            return Results.NotFound(new { message = $"Palette with ID {id} was not found." });
+
+        return Results.Ok(palette.ToPaletteDto());
     }
 
     private static async Task<IResult> Create(CreatePaletteDto createdPalette, IPaletteRepository paletteRepository)
@@ -44,12 +48,20 @@ public static class PalettesEndpoints
         IPaletteRepository paletteRepository)
     {
         var palette = await paletteRepository.UpdateById(id, updatedPalette);
-        return palette is null ? Results.NotFound() : Results.Ok(palette.ToPaletteDto());
+
+        if (palette == null)
+            return Results.NotFound(new { message = $"Palette with ID {id} was not found." });
+
+        return Results.Ok(palette.ToPaletteDto());
     }
 
     private static async Task<IResult> DeleteById(int id, IPaletteRepository paletteRepository)
     {
         var palette = await paletteRepository.DeleteById(id);
-        return palette is null ? Results.NotFound() : Results.Ok(palette.ToPaletteDto());
+
+        if (palette == null)
+            return Results.NotFound(new { message = $"Palette with ID {id} was not found." });
+
+        return Results.Ok(palette.ToPaletteDto());
     }
 }
