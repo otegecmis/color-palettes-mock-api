@@ -5,7 +5,7 @@ namespace ColorPalettes.MockAPI.Data;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-    public DbSet<Palette> Palettes => Set<Palette>();
+    public DbSet<Palette> Palettes { get; private set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
