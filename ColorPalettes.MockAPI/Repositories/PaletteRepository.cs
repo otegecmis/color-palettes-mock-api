@@ -18,11 +18,11 @@ public class PaletteRepository(ApplicationDbContext context) : IPaletteRepositor
 
         if (!string.IsNullOrEmpty(tags))
         {
-            var tagList = tags?.Split(',')
+            var tagList = tags.Split(',')
                 .Select(tag => tag.Trim())
                 .ToList();
 
-            query = query.Where(palette => palette.Tags != null && palette.Tags.Any(tag => tagList!.Contains(tag)));
+            query = query.Where(palette => palette.Tags != null && palette.Tags.Any(tag => tagList.Contains(tag)));
         }
 
         return await query.AsNoTracking().ToListAsync();
