@@ -26,7 +26,7 @@ using (var scope = app.Services.CreateScope())
         await context.Database.EnsureDeletedAsync();
     }
 
-    await context.Database.MigrateAsync();
+    await app.MigrateDatabase();
 }
 
 if (app.Environment.IsDevelopment())
@@ -36,6 +36,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapPalettesEndpoints().WithTags("Palettes");
-await app.MigrateDatabase();
 
 app.Run();
