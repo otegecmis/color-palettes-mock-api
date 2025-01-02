@@ -1,8 +1,8 @@
-using Microsoft.EntityFrameworkCore;
 using ColorPalettes.MockAPI.Data;
 using ColorPalettes.MockAPI.Interfaces;
 using ColorPalettes.MockAPI.Repositories;
 using ColorPalettes.MockAPI.Endpoints;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var connString = builder.Configuration.GetConnectionString("SQLiteConnectionString");
