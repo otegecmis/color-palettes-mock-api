@@ -1,5 +1,4 @@
 using ColorPalettes.MockAPI.Data;
-using ColorPalettes.MockAPI.Dtos;
 using ColorPalettes.MockAPI.Entities;
 using ColorPalettes.MockAPI.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -42,18 +41,15 @@ public class PaletteRepository(ApplicationDbContext context) : IPaletteRepositor
         return createdPalette;
     }
 
-    public async Task<Palette?> UpdateById(int id, UpdatePaletteDto updatedPaletteDto)
+    public async Task<Palette?> UpdateById(int id, Palette updatedPalette)
     {
-        var existingPalette = await context.Palettes.FindAsync(id);
+        var existingPalette = await GetById(id);
 
-        if (existingPalette is null)
-        {
-            return null;
-        }
+        if (existingPalette is null) return null;
 
-        existingPalette.Colors = updatedPaletteDto.Colors;
-        existingPalette.Highlighted = updatedPaletteDto.Highlighted;
-        existingPalette.Tags = updatedPaletteDto.Tags;
+        existingPalette.Colors = updatedPalette.Colors;
+        existingPalette.Highlighted = updatedPalette.Highlighted;
+        existingPalette.Tags = updatedPalette.Tags;
 
         await context.SaveChangesAsync();
 
@@ -62,12 +58,9 @@ public class PaletteRepository(ApplicationDbContext context) : IPaletteRepositor
 
     public async Task<Palette?> DeleteById(int id)
     {
-        var existingPalette = await context.Palettes.FindAsync(id);
+        var existingPalette = await GetById(id);
 
-        if (existingPalette is null)
-        {
-            return null;
-        }
+        if (existingPalette is null) return null;
 
         context.Palettes.Remove(existingPalette);
         await context.SaveChangesAsync();

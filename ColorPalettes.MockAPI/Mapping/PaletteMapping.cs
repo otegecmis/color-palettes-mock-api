@@ -5,7 +5,7 @@ namespace ColorPalettes.MockAPI.Mapping;
 
 public static class PaletteMapping
 {
-    public static PaletteDto ToPaletteDto(this Palette palette)
+    public static PaletteDto ToDto(this Palette palette)
     {
         return new PaletteDto(
             palette.Id,
@@ -15,13 +15,24 @@ public static class PaletteMapping
         );
     }
 
-    public static Palette ToPaletteEntity(this CreatePaletteDto createPaletteDto)
+    public static Palette ToEntity(this CreatePaletteDto createPaletteDto)
     {
         return new Palette()
         {
             Colors = createPaletteDto.Colors,
             Highlighted = createPaletteDto.Highlighted,
             Tags = createPaletteDto.Tags
+        };
+    }
+
+    public static Palette ToEntity(this UpdatePaletteDto updatePaletteDto, int id)
+    {
+        return new Palette()
+        {
+            Id = id,
+            Colors = updatePaletteDto.Colors,
+            Highlighted = updatePaletteDto.Highlighted,
+            Tags = updatePaletteDto.Tags
         };
     }
 }

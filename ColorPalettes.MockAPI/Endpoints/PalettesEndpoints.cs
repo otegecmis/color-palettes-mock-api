@@ -24,44 +24,30 @@ public static class PalettesEndpoints
     private static async Task<IResult> GetAll(bool? highlighted, string? tags, IPaletteRepository paletteRepository)
     {
         var palettes = await paletteRepository.GetAll(highlighted, tags);
-        var paletteDtos = palettes.Select(p => p.ToPaletteDto());
-        return Results.Ok(paletteDtos);
+        return Results.Ok(palettes.Select(p => p.ToDto()));
     }
 
     private static async Task<IResult> GetById(int id, IPaletteRepository paletteRepository)
     {
         var palette = await paletteRepository.GetById(id);
-
-        if (palette == null)
-            return Results.NotFound(new { message = $"Palette with ID {id} was not found." });
-
-        return Results.Ok(palette.ToPaletteDto());
+        return palette == null ? Results.NotFound() : Results.Ok(palette.ToDto());
     }
 
     private static async Task<IResult> Create(CreatePaletteDto createdPalette, IPaletteRepository paletteRepository)
     {
-        var palette = await paletteRepository.Create(createdPalette.ToPaletteEntity());
-        return Results.CreatedAtRoute(GetByIdEndpoint, new { id = palette.Id }, palette.ToPaletteDto());
+        var palette = await paletteRepository.Create(createdPalette.ToEntity());
+        return Results.CreatedAtRoute(GetByIdEndpoint, new { id = palette.Id }, palette.ToDto());
     }
 
-    private static async Task<IResult> UpdateById(int id, UpdatePaletteDto updatedPalette,
-        IPaletteRepository paletteRepository)
+    private static async Task<IResult> UpdateById(int id, UpdatePaletteDto updatedPalette, IPaletteRepository paletteRepository)
     {
-        var palette = await paletteRepository.UpdateById(id, updatedPalette);
-
-        if (palette == null)
-            return Results.NotFound(new { message = $"Palette with ID {id} was not found." });
-
-        return Results.Ok(palette.ToPaletteDto());
+        var palette = await paletteRepository.UpdateById(id, updatedPalette.ToEntity(id));
+        return palette == null ? Results.NotFound() : Results.Ok(palette.ToDto());
     }
 
     private static async Task<IResult> DeleteById(int id, IPaletteRepository paletteRepository)
     {
         var palette = await paletteRepository.DeleteById(id);
-
-        if (palette == null)
-            return Results.NotFound(new { message = $"Palette with ID {id} was not found." });
-
-        return Results.Ok(palette.ToPaletteDto());
+        return palette == null ? Results.NotFound() : Results.NoContent();
     }
 }
