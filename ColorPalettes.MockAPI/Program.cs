@@ -19,7 +19,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    var launchSetting = builder.Configuration.GetValue<bool>("RecreateDatabaseOnStart");
+    var launchSetting = bool.Parse(builder.Configuration.GetValue<string>("RecreateDatabaseOnStart") ?? "false");
 
     if (launchSetting)
     {
